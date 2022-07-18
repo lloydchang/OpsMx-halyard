@@ -5,8 +5,8 @@ COPY halyard-web/build/install/halyard /opt/halyard
 ENV KUBECTL_RELEASE=1.15.10
 ENV AWS_BINARY_RELEASE_DATE=2020-02-22
 ENV AWS_CLI_VERSION=1.18.18
-RUN yum -y install java-11-openjdk-headless.x86_64 wget vim  curl python3-pip net-tools jq  pip install awscli==${AWS_CLI_VERSION} 
-
+RUN yum -y install java-11-openjdk-headless.x86_64 wget vim  curl python3-pip net-tools jq  && \
+pip3 install awscli==1.18.18
    
 RUN yum -y update
 RUN echo '#!/usr/bin/env bash' | tee /usr/local/bin/hal > /dev/null && \
