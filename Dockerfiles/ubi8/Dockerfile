@@ -17,7 +17,7 @@ RUN curl -f -LO --retry 3 --retry-delay 3 https://storage.googleapis.com/kuberne
     chmod +x ./kubectl && \
     mv ./kubectl /usr/local/bin/kubectl
 
-RUN curl -f -o  /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/${KUBECTL_RELEASE}/${AWS_BINARY_RELEASE_DATE}/bin/linux/amd64/aws-iam-authenticator && \
+RUN curl -f -o  /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/v${KUBECTL_RELEASE}/${AWS_BINARY_RELEASE_DATE}/bin/linux/amd64/aws-iam-authenticator && \
     chmod +x /usr/local/bin/aws-iam-authenticator
 
 RUN adduser spinnaker
