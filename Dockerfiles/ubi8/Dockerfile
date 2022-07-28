@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/ubi:8.3
 MAINTAINER sig-platform@spinnaker.io
-COPY halyard-web/build/install/halyard /opt/halyard
+
 
 ENV KUBECTL_RELEASE=1.15.10
 ENV AWS_BINARY_RELEASE_DATE=2020-02-22
@@ -21,6 +21,7 @@ RUN curl -f -o  /usr/local/bin/aws-iam-authenticator https://amazon-eks.s3-us-we
     chmod +x /usr/local/bin/aws-iam-authenticator
 
 RUN adduser spinnaker
+COPY halyard-web/build/install/halyard /opt/halyard
 USER spinnaker
 
 CMD ["/opt/halyard/bin/halyard"]
