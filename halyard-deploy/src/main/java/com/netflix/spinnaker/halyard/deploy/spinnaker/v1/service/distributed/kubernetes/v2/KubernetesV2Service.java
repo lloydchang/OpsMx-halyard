@@ -410,7 +410,10 @@ public interface KubernetesV2Service<T> extends HasServiceSettings<T>, Kubernete
     container.addBinding("port", port.toString());
     container.addBinding("volumeMounts", volumeMounts);
 
-    TemplatedResource readinessProbe = getProbe(settings, null);
+    DeploymentEnvironment.ReadinessProbeConfig readinessProbeConfig =
+            deploymentEnvironment.getReadinessProbeConfig();
+    Integer readinessProbeInitialDelaySeconds = readinessProbeConfig==null ? null : readinessProbeConfig.getInitialDelaySeconds();
+    TemplatedResource readinessProbe = getProbe(settings, readinessProbeInitialDelaySeconds);
     container.addBinding("readinessProbe", readinessProbe.toString());
 
     DeploymentEnvironment.LivenessProbeConfig livenessProbeConfig =
