@@ -137,6 +137,7 @@ public class DeploymentEnvironment extends Node {
   private Map<String, String> nodeSelectors = new HashMap<>();
   private GitConfig gitConfig = new GitConfig();
   private LivenessProbeConfig livenessProbeConfig = new LivenessProbeConfig();
+  private ReadinessProbeConfig readinessProbeConfig = new ReadinessProbeConfig();
 
   @ValidForSpinnakerVersion(
       lowerBound = "1.10.0",
@@ -169,6 +170,11 @@ public class DeploymentEnvironment extends Node {
   @Data
   public static class LivenessProbeConfig {
     boolean enabled;
+    Integer initialDelaySeconds;
+  }
+
+  @Data
+  public static class ReadinessProbeConfig {
     Integer initialDelaySeconds;
   }
 }
