@@ -142,6 +142,13 @@ public class EditDeploymentEnvironmentCommand extends AbstractConfigCommand {
           "The number of seconds to wait before performing the first liveness probe. Should be set to the longest service startup time. See docs for more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/")
   private Integer livenessProbeInitialDelaySeconds;
 
+  @Parameter(
+          names = "--readiness-probe-initial-delay-seconds",
+          arity = 1,
+          description =
+                  "The number of seconds to wait before performing the first readiness probe. Should be set to the longest service startup time. See docs for more information: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/")
+  private Integer readinessProbeInitialDelaySeconds;
+
   @Override
   protected void executeThis() {
     String currentDeployment = getCurrentDeployment();
@@ -179,6 +186,11 @@ public class EditDeploymentEnvironmentCommand extends AbstractConfigCommand {
     if (livenessProbeConfig == null) {
       livenessProbeConfig = new DeploymentEnvironment.LivenessProbeConfig();
     }
+    DeploymentEnvironment.ReadinessProbeConfig readinessProbeConfig =
+        deploymentEnvironment.getReadinessProbeConfig();
+    if (readinessProbeConfig == null) {
+      readinessProbeConfig = new DeploymentEnvironment.ReadinessProbeConfig();
+    }
 
     deploymentEnvironment.setAccountName(
         isSet(accountName) ? accountName : deploymentEnvironment.getAccountName());
@@ -203,6 +215,10 @@ public class EditDeploymentEnvironmentCommand extends AbstractConfigCommand {
       livenessProbeConfig.setInitialDelaySeconds(livenessProbeInitialDelaySeconds);
     }
     deploymentEnvironment.setLivenessProbeConfig(livenessProbeConfig);
+    if (isSet(readinessProbeInitialDelaySeconds)) {
+      readinessProbeConfig.setInitialDelaySeconds(readinessProbeInitialDelaySeconds);
+    }
+    deploymentEnvironment.setReadinessProbeConfig(readinessProbeConfig);
 
     deploymentEnvironment.setLocation(
         isSet(location) ? location : deploymentEnvironment.getLocation());
