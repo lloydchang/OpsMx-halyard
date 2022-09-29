@@ -69,6 +69,7 @@ public class ServiceSettings {
   Integer targetSize;
   Boolean skipLifeCycleManagement;
   String baseUrl;
+  Integer readinessProbeInitialDelaySeconds;
 
   public ServiceSettings() {}
 
