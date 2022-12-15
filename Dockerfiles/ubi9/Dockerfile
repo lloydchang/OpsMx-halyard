@@ -2,7 +2,7 @@ FROM registry.access.redhat.com/ubi9:9.1.0
 MAINTAINER sig-platform@spinnaker.io
 
 
-ENV KUBECTL_RELEASE=1.15.10
+ENV KUBECTL_RELEASE=1.22.0
 ENV AWS_BINARY_RELEASE_DATE=2020-02-22
 ENV AWS_CLI_VERSION=1.18.18
 RUN yum -y install java-11-openjdk-headless.x86_64 wget vim   python3-pip net-tools jq  && \
