@@ -47,4 +47,4 @@ echo "Build id is --------------------- $BUILD_ID"
    docker push $RELEASE_IMAGENAME
 
 # Quay Image Name as Artifact
-echo \"Quay_IMAGE_NAME\": \"${IMAGENAME}\" > file.properties;
+echo \"Halayrd\": \"${IMAGENAME}\" > file.properties;
